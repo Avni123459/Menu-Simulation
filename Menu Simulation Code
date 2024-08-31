@@ -1,0 +1,80 @@
+welcome=input('Welcome to the Aratta Restaurant. Are you here to order? y/n: ')
+
+def menu():
+    print('Aratta Restaurant Menu:')
+    print('* Starter')
+    print('* Main')
+    print('* Dessert')
+
+if welcome == 'y':      
+    print('Welcome')
+    menu()
+    
+    def order():
+        eatoption=input('What are you going to eat today?: ').capitalize() 
+        while eatoption not in ('Starter','Main','Dessert'):
+            eatoption=input('What are you going to eat today?: ').capitalize()
+        
+        Starter=['Bread', 'Toast', 'Salad']
+        Main=['Pasta' , 'Pizza', 'Soup' ]
+        dessert=['Tiramisu', 'Pie', 'Pastry']
+        
+        if eatoption == 'Starter':
+             print('Starters: ')
+             print(*Starter, sep =',')
+        elif eatoption == 'Main':
+             print('Main: ')
+             print(*Main, sep=',')
+        elif eatoption == 'Dessert':
+             print('Dessert: ')
+             print(*dessert, sep=',')
+        else:
+             print('Aratta is not serving that, Thank you')
+        
+        eatoption2=input('What are you going to eat today from ?:' ).capitalize() 
+        
+        Starterprice=[10.0,13.0,15.0]
+        Mainprice=[35.0,30.0,25.0]
+        dessertprice=[15.0,30.0,25.0]
+
+
+        def price(option):
+             optionvat=option+(0.05*option)
+             print('$',optionvat)
+             print('This is the price of your option, ', eatoption2, '+ a 5% VAT')
+             pricetotal.append(optionvat)
+             bill.append(eatoption2)
+        
+        if eatoption2 in Starter:
+            index=Starter.index(eatoption2)
+            option=Starterprice[index]
+            price(option)
+        elif eatoption2 in Main:
+            index=Main.index(eatoption2)
+            option=Mainprice[index]
+            price(option)
+        elif eatoption2 in dessert:
+            index=dessert.index(eatoption2)
+            option=dessertprice[index]
+            price(option)
+        else:
+            print('This option is not being served, Thank you')
+
+    pricetotal=[]
+    bill=[]
+
+    order()
+    againorder=input('Are you going to order more food? y/n: ')
+
+    while againorder == 'y':
+        order()
+        againorder=input('Are you going to order more food? y/n: ')
+
+    print('-----TOTAL BILL-----')
+    print('Option ',*bill, sep='/ ')
+    print('Price ',*pricetotal, sep='/ $')
+    print('The total bill for your order is: $', sum(pricetotal))  
+else:
+    print('Thank you for coming to Aratta')
+
+
